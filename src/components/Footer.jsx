@@ -10,8 +10,7 @@ const Footer = () => {
         <div className=" w-full md:w-1/4">
           <h1 className=" font-semibold text-xl pb-4">TripPixie</h1>
           <p className=" text-sm">
-            With TripPixie you can experience new travel and the best tourist
-            destinations that we have to offer
+          With TripPixie, you can explore new journeys and discover the finest tourist destinations we have to offer
           </p>
         </div>
         <div>
@@ -83,9 +82,9 @@ const Footer = () => {
       <div>
         <p>
           <p className=" text-center py-4">
-            @copyright developed by
-            <span className=" text-brightColor"> champion programmers</span> | All
-            rights reserved
+            
+            <span className=" text-brightColor"></span> 
+            
           </p>
         </p>
       </div>
