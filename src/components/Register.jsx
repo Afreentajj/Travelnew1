@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { Carousel } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom'; // Importing useNavigate
+import { Link } from 'react-router-dom'; // Importing Link for potential navigation
+
 
 const Register = () => {
+  const navigate = useNavigate(); // Using useNavigate
+  const [formData, setFormData] = useState({});
   const images = [
     'https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80',
     'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
     'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80'
   ];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Validate form data here
+    // If form data is valid, trigger alert and redirect
+    alert('Registration successful!');
+    navigate('#'); // Using navigate for redirection
+  };
 
   
   return (
@@ -93,16 +105,17 @@ const Register = () => {
               </label>
             </div>
             <button
-              className="mt-6 block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
-            >
-              sign up
-            </button>
+  className="mt-6 block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+  type="submit" 
+>
+  Sign Up
+</button>
+
             <p className="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-center text-gray-700">
               Already have an account?
-              <a href="/login" className="font-medium text-gray-900">
+              <Link to="/login" className="font-medium text-gray-900">
                 Login
-              </a>
+              </Link>
             </p>
           </form>
         </div>

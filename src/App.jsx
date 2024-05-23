@@ -9,7 +9,7 @@ import Features from "./components/Features";
 import Destination from "./components/Destination";
 import About from "./components/About";
 import Contact from "./components/Contact";
-
+import BookingForm from "./components/Bookingform";
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} /> 
             {/* <Route path="/booking" element={<Destination />} /> */}
+            <Route path="/booking" element={<BookingForm />}/>
             <Route path="/destination" element={<Destination/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<Contact/>}/>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../layouts/Button";
 import img from "../assets/img/hero.jpg";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; // Importing useNavigate
 import Features from "./Features";
 
 const Home = () => {
