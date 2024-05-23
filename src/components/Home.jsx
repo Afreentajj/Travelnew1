@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../layouts/Button";
 import img from "../assets/img/hero.jpg";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom"; 
 import Features from "./Features";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
         </p>
 
         <div className=" lg:pl-24">
-          <Link to="destination" spy={true} smooth={true} duration={500}>
+          <Link to="/destination" spy={true} smooth={true} duration={500}>
             <Button title="Destinations" backgroundColor={backgroundColor} />
           </Link>
         </div>

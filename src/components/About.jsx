@@ -1,7 +1,7 @@
 import React from "react";
 import img from "../assets/img/about.jpg";
 import Button from "../layouts/Button";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const About = () => {
   const backgroundColor = `bg-white`;
@@ -16,7 +16,7 @@ const About = () => {
           Your dream vacation awaits, and we're here to make it a reality.
         </p>
 
-        <Link to="contact" spy={true} smooth={true} duration={500}>
+        <Link to="/contact" spy={true} smooth={true} duration={500}>
           <Button title="Contact Now" backgroundColor={backgroundColor} />
         </Link>
       </div>

@@ -3,21 +3,20 @@ import img1 from "../assets/img/dest1.jpg";
 import img2 from "../assets/img/dest2.jpg";
 import img3 from "../assets/img/dest3.jpg";
 
-import DestinationCard from "../layouts/DestinationCard";
+import DestinationCard from "../layouts/DestinationCard"; // Correct import path
 
 const Destination = () => {
   return (
-    <div className=" min-h-screen flex flex-col justify-center md:mx-32 mx-5">
-      <h1 className=" font-medium text-center text-4xl lg:mt-0 mt-16">
+    <div className="min-h-screen flex flex-col justify-center md:mx-32 mx-5">
+      <h1 className="font-medium text-center text-4xl lg:mt-0 mt-16">
         Most Popular Destinations
       </h1>
 
-      <div className=" flex flex-col lg:flex-row gap-5 mt-14">
+      <div className="flex flex-col lg:flex-row gap-5 mt-14">
         <DestinationCard
           img={img1}
           title="Paris, France"
-          para="Paris offers iconic landmarks like the Eiffel Tower and world-class
-          art at the Louvre Museum."
+          para="Paris offers iconic landmarks like the Eiffel Tower and world-class art at the Louvre Museum."
         />
         <DestinationCard
           img={img2}

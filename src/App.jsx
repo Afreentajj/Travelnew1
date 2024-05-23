@@ -10,6 +10,7 @@ import Destination from "./components/Destination";
 import About from "./components/About";
 import Contact from "./components/Contact";
 
+
 const App = () => {
   return (
     <Router>
@@ -17,11 +18,12 @@ const App = () => {
         <Navbar />
         <main>
           <Routes>
+            <Route path="/" element={<Home />} /> 
+            {/* <Route path="/booking" element={<Destination />} /> */}
             <Route path="/destination" element={<Destination/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<Contact/>}/>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} /> {/* Route for Register component */}
+           <Route path="/register" element={<Register />} /> {/* Route for Register component */}
             <Route path="/login" element={<Login />} />
             <Route path="/features" element={<Features />} />
           </Routes>
