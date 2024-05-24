@@ -104,14 +104,14 @@ const Login = () => {
           Forgot Password?
         </Link>
             </div>
-            <button className="border border-gray-300 text-gray-700 py-3 px-6 mt-6 w-full rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50">
+            {/* <button className="border border-gray-300 text-gray-700 py-3 px-6 mt-6 w-full rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50">
               <img
                 src="https://www.material-tailwind.com/logos/logo-google.png"
                 alt="google"
                 className="h-6 w-6"
               />{" "}
               Sign In with Google
-            </button>
+            </button> */}
             <p className="mt-4 text-center text-gray-900 font-normal">
               Not registered?{" "}
               <a href="/register" className="font-medium text-gray-900">
