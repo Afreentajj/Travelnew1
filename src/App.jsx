@@ -10,6 +10,7 @@ import Destination from "./components/Destination";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import BookingForm from "./components/Bookingform";
+import ForgotPassword from './components/forgotpassword';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/contact" element={<Contact/>}/>
            <Route path="/register" element={<Register />} /> {/* Route for Register component */}
             <Route path="/login" element={<Login />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/features" element={<Features />} />
           </Routes>
         </main>

@@ -1,9 +1,39 @@
 import React, { useState } from "react";
-import { Carousel } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => setPasswordShown(!passwordShown);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form data
+    if (!formData.email || !formData.password) {
+      alert('Please fill all the fields');
+      return;
+    }
+
+    // If form data is valid, trigger alert and redirect
+    alert('Login successful!');
+    navigate('/'); // Navigate to home page or any other page
+  };
 
   return (
     <section className="grid h-screen relative">
@@ -18,7 +48,7 @@ const Login = () => {
           <p className="text-gray-600 mb-6 text-lg font-normal">
             Enter your email and password to sign in
           </p>
-          <form className="text-left">
+          <form className="text-left" onSubmit={handleSubmit}>
             <div className="mb-6">
               <label htmlFor="email" className="mb-2 block font-medium text-gray-900">
                 Your Email
@@ -27,6 +57,8 @@ const Login = () => {
                 id="email"
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="name@mail.com"
                 className="w-full px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring focus:border-blue-400 border border-gray-300 rounded-lg"
               />
@@ -39,6 +71,9 @@ const Login = () => {
                 <input
                   id="password"
                   type={passwordShown ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="********"
                   className="w-full px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring focus:border-blue-400 border border-gray-300 rounded-lg pr-12"
                 />
@@ -65,7 +100,9 @@ const Login = () => {
               Sign In
             </button>
             <div className="mt-4 flex justify-end">
-              <a href="#" className="text-blue-gray font-medium text-sm">Forgot password</a>
+            <Link to="/forgotpassword" className="font-medium text-blue-500 hover:text-blue-700">
+          Forgot Password?
+        </Link>
             </div>
             <button className="border border-gray-300 text-gray-700 py-3 px-6 mt-6 w-full rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50">
               <img
@@ -83,6 +120,7 @@ const Login = () => {
             </p>
           </form>
         </div>
+        
       </div>
     </section>
   );
