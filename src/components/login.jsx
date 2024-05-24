@@ -32,7 +32,7 @@ const Login = () => {
 
     // If form data is valid, trigger alert and redirect
     alert('Login successful!');
-    navigate('/'); // Navigate to home page or any other page
+    navigate('/'); // Navigate to home page or any other pagess
   };
 
   return (
