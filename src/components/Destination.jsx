@@ -12,12 +12,12 @@ import DestinationCard from "../layouts/DestinationCard"; // Correct import path
 
 const Destination = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center md:mx-32 mx-5">
-      <h1 className="font-medium text-center text-4xl lg:mt-0 mt-16">
+    <div className="min-h-screen flex flex-col justify-center md:mx-32 mx-1">
+      <h1 className="font-medium text-center text-4xl lg:mt-5 mt-16">
         Most Popular Destinations
       </h1>
 
-      <div className="flex flex-col lg:flex-row gap-5 mt-14">
+      <div className="flex flex-col lg:flex-row gap-5 mt-14 shadow-md hover:shadow-lg transition-shadow duration-300">
         <DestinationCard
           img={img1}
           title="Paris, France"
@@ -39,6 +39,8 @@ const Destination = () => {
           title="Bern, Switzerland"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
         />
+        </div>
+        <div className="flex flex-col lg:flex-row gap-5 mt-14" >
          <DestinationCard
           img={img5}
           title="Al ula, Saudi arabia"
@@ -50,6 +52,11 @@ const Destination = () => {
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
         />
          <DestinationCard
+          img={img7}
+          title="tokyo, Japan"
+          para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+        />
+        <DestinationCard
           img={img7}
           title="tokyo, Japan"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."

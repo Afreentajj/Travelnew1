@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Carousel } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import LoadingBar from "react-top-loading-bar"; // Import the LoadingBar component
 
 const Register = () => {
   const navigate = useNavigate();
@@ -9,8 +10,10 @@ const Register = () => {
     fullname: '',
     email: '',
     password: '',
+    confirmPassword: '',
   });
-
+  const [loadingProgress, setLoadingProgress] = useState(0); // State to track loading progress
+  const [error, setError] = useState('');
   const images = [
     'https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80',
     'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
@@ -20,15 +23,24 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form data
-    if (!formData.fullname || !formData.email || !formData.password) {
-      alert('Please fill all the fields');
-      return;
-    }
+    // Start the loading bar
+    setLoadingProgress(30);
 
-    // If form data is valid, trigger alert and redirect
-    alert('Registration successful!');
-    navigate('/home'); // Navigate to home page or any other page
+    // Simulate a delay for demonstration purposes
+    setTimeout(() => {
+      // Validate form data
+      if (!formData.fullname || !formData.email || !formData.password) {
+        alert('Please fill all the fields');
+        setLoadingProgress(0); // Reset the loading bar
+        return;
+      }
+
+      
+
+      // If form data is valid, trigger alert and redirect
+      alert('Registration successful!');
+      navigate('/home'); // Navigate to home page or any other page
+    }, 500);
   };
 
   const handleChange = (e) => {
@@ -65,6 +77,7 @@ const Register = () => {
             Nice to meet you! Enter your details to register.
           </p>
           <form className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96" onSubmit={handleSubmit}>
+          <LoadingBar color="#ff0000" progress={loadingProgress} onLoaderFinished={() => setLoadingProgress(0)} />
             <div className="flex flex-col gap-6 mb-1">
               <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
                 Your Name

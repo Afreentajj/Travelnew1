@@ -29,11 +29,13 @@ const SunsetPicture = () => {
       <LoadingBar color="#ff0000" progress={loadingProgress} onLoaderFinished={() => setLoadingProgress(0)} /> {/* Loading bar component */}
       <div className="absolute flex justify-center items-center h-full w-full">
         <div className="mb-8 flex gap-4">
-          <Card className="mt-6 w-96">
+        <Card className="mt-6 w-96 bg-opacity-80 backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 backdrop-blur-lg backdrop-filter backdrop-blur-3xl">
+
             <CardHeader color="blue-gray" className="relative h-56">
               <img
                 src={roamrisePic}
                 alt="card-image"
+                className="w-full h-full object-cover rounded-lg "
               />
             </CardHeader>
             <CardBody>
