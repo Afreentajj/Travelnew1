@@ -32,7 +32,7 @@ const ForgotPassword = () => {
 
     // If form data is valid, trigger alert and redirect
     alert('Password changed successfully!');
-    navigate('/'); // Navigate to home page or any other page
+    navigate('/home'); // Navigate to home page or any other page
   };
 
   const handleChange = (e) => {
@@ -48,6 +48,11 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-screen relative">
       {/* Forgot Password Form Section */}
+      <img
+        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center justify-center bg-white bg-opacity-80 p-6 rounded-xl shadow-lg w-full max-w-lg">
           <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">

@@ -28,7 +28,7 @@ const Register = () => {
 
     // If form data is valid, trigger alert and redirect
     alert('Registration successful!');
-    navigate('/'); // Navigate to home page or any other page
+    navigate('/home'); // Navigate to home page or any other page
   };
 
   const handleChange = (e) => {
@@ -103,6 +103,20 @@ const Register = () => {
                   className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 />
               </div>
+              <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                Confirm Password
+              </h6>
+              <div className="relative h-11 w-full min-w-[200px]">
+                <input
+                  type="confirmpassword"
+                  name="confirmpassword"
+                  value={formData.confirmpassword}
+                  onChange={handleChange}
+                  placeholder="********"
+                  className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                />
+              </div>
+              
             </div>
             <div className="inline-flex items-center">
               <label className="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3" htmlFor="remember">

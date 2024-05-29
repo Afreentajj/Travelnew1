@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../components/AuthContext"; // Import useAuth hook
 import { Link } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar"; // Import the LoadingBar component
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -8,8 +10,10 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [loadingProgress, setLoadingProgress] = useState(0); // State to track loading progress
 
   const navigate = useNavigate();
+  const { login } = useAuth(); // Destructure login function
 
   const togglePasswordVisibility = () => setPasswordShown(!passwordShown);
 
@@ -24,15 +28,24 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form data
     if (!formData.email || !formData.password) {
       alert('Please fill all the fields');
       return;
     }
 
-    // If form data is valid, trigger alert and redirect
-    alert('Login successful!');
-    navigate('/'); // Navigate to home page or any other pagess
+    setLoadingProgress(30); // Start the loading bar
+    setTimeout(() => {
+      alert('Login successful!');
+      login(); // Update auth state
+      navigate('/home'); // Navigate to home page after successful login
+    }, 500); // Simulating a delay for demonstration purposes
+  };
+
+  const handleLinkClick = (path) => {
+    setLoadingProgress(30); // Start the loading bar
+    setTimeout(() => {
+      navigate(path); // Navigate to the specified path
+    }, 500); // Simulating a delay for demonstration purposes
   };
 
   return (
@@ -42,6 +55,7 @@ const Login = () => {
         alt="image 3"
         className="absolute inset-0 h-full w-full object-cover z-0"
       />
+      <LoadingBar color="#ff0000" progress={loadingProgress} onLoaderFinished={() => setLoadingProgress(0)} /> {/* Loading bar component */}
       <div className="relative z-10 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h3 className="text-3xl mb-2 text-blue-gray">Sign In</h3>
@@ -100,30 +114,21 @@ const Login = () => {
               Sign In
             </button>
             <div className="mt-4 flex justify-end">
-            <Link to="/forgotpassword" className="font-medium text-blue-500 hover:text-blue-700">
-          Forgot Password?
-        </Link>
+              <Link to="/forgotpassword" className="font-medium text-blue-500 hover:text-blue-700" onClick={(e) => {e.preventDefault(); handleLinkClick('/forgotpassword');}}>
+                Forgot Password?
+              </Link>
             </div>
-            {/* <button className="border border-gray-300 text-gray-700 py-3 px-6 mt-6 w-full rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50">
-              <img
-                src="https://www.material-tailwind.com/logos/logo-google.png"
-                alt="google"
-                className="h-6 w-6"
-              />{" "}
-              Sign In with Google
-            </button> */}
             <p className="mt-4 text-center text-gray-900 font-normal">
               Not registered?{" "}
-              <a href="/register" className="font-medium text-gray-900">
+              <Link to="/register" className="font-medium text-gray-900" onClick={(e) => {e.preventDefault(); handleLinkClick('/register');}}>
                 Create account
-              </a>
+              </Link>
             </p>
           </form>
         </div>
-        
       </div>
     </section>
   );
-}
+};
 
 export default Login;
