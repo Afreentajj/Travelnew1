@@ -13,8 +13,12 @@ const DestinationCard = (props) => {
         <h2 className="text-xl font-medium text-center">{props.title}</h2>
         <p className="text-sm">{props.para}</p>
         <div className="flex flex-row justify-center">
-          <Link to="/booking">
+          {/* <Link to="/booking">
             <Button title="Book Tickets" backgroundColor={backgroundColor} />
+          </Link> */}
+          {/* Update the Link to point to the PricingCard component */}
+          <Link to="/PricingCard">
+            <Button title="Package" backgroundColor={backgroundColor} />
           </Link>
         </div>
       </div>

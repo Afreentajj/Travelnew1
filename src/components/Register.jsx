@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Carousel } from "@material-tailwind/react";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar"; // Import the LoadingBar component
+import { useAuth } from "../components/AuthContext"; // Adjust the import path as necessary
 
 const Register = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); // Get the login function from the AuthContext
   const [formData, setFormData] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    fullname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [loadingProgress, setLoadingProgress] = useState(0); // State to track loading progress
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState(""); // State to track password matching error
   const images = [
-    'https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80',
-    'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
-    'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80'
+    "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
+    "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
+    "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
   ];
 
   const handleSubmit = (e) => {
@@ -30,25 +33,38 @@ const Register = () => {
     setTimeout(() => {
       // Validate form data
       if (!formData.fullname || !formData.email || !formData.password) {
-        alert('Please fill all the fields');
+        alert("Please fill all the fields");
         setLoadingProgress(0); // Reset the loading bar
         return;
       }
 
-      
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        setLoadingProgress(0); // Reset the loading bar
+        return;
+      }
 
-      // If form data is valid, trigger alert and redirect
-      alert('Registration successful!');
-      navigate('/home'); // Navigate to home page or any other page
+      // If form data is valid, trigger alert, login, and redirect
+      alert("Registration successful!");
+      login(); // Call the login function from AuthContext to authenticate the user
+      navigate("/home"); // Navigate to home page or any other page
     }, 500);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+
+    if (name === "confirmPassword" || name === "password") {
+      if (value !== formData.password && name === "confirmPassword") {
+        setPasswordError("Passwords do not match");
+      } else {
+        setPasswordError("");
+      }
+    }
   };
 
   return (
@@ -76,8 +92,15 @@ const Register = () => {
           <p className="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
             Nice to meet you! Enter your details to register.
           </p>
-          <form className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96" onSubmit={handleSubmit}>
-          <LoadingBar color="#ff0000" progress={loadingProgress} onLoaderFinished={() => setLoadingProgress(0)} />
+          <form
+            className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96"
+            onSubmit={handleSubmit}
+          >
+            <LoadingBar
+              color="#ff0000"
+              progress={loadingProgress}
+              onLoaderFinished={() => setLoadingProgress(0)}
+            />
             <div className="flex flex-col gap-6 mb-1">
               <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
                 Your Name
@@ -116,41 +139,44 @@ const Register = () => {
                   className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 />
               </div>
-              <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-                Confirm Password
-              </h6>
+              <div className="flex items-center justify-between">
+                <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                  Confirm Password
+                </h6>
+                {passwordError && (
+                  <p className="text-red-500 text-sm">{passwordError}</p>
+                )}
+              </div>
               <div className="relative h-11 w-full min-w-[200px]">
                 <input
-                  type="confirmpassword"
-                  name="confirmpassword"
-                  value={formData.confirmpassword}
+                  type="password" // Corrected input type
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="********"
                   className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 />
               </div>
-              
             </div>
-            <div className="inline-flex items-center">
-              <label className="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3" htmlFor="remember">
-                <input
-                  type="checkbox"
-                  className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
-                  id="remember"
-                />
-                <span className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </span>
-              </label>
-              <label className="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="remember">
-                <p className="flex items-center font-sans text-sm antialiased font-normal leading-normal text-gray-700">
+            <div className="flex items-center mt-4 space-x-2">
+              <input
+                type="checkbox"
+                id="remember"
+                className="peer h-5 w-5 cursor-pointer appearance-none border border-gray-300 rounded-md checked:bg-gray-900 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+              />
+              <label
+                htmlFor="remember"
+                className="text-gray-700 cursor-pointer select-none"
+              >
+                <span className="font-sans text-sm font-normal leading-normal">
                   I agree to the
-                  <a href="#" className="font-medium transition-colors hover:text-gray-900">
+                  <a
+                    href="#"
+                    className="font-medium transition-colors hover:text-gray-900"
+                  >
                     &nbsp;Terms and Conditions
                   </a>
-                </p>
+                </span>
               </label>
             </div>
             <button

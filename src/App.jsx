@@ -10,9 +10,10 @@ import Features from "./components/Features";
 import Destination from "./components/Destination";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import BookingForm from "./components/BookingForm";
+import BookingForm from "./components/Bookingform";
 import ForgotPassword from './components/ForgotPassword';
 import SunsetPicture from './components/SunsetPicture';
+import PricingCard from "./components/PricingCard";
 
 const AppContent = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ const AppContent = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/forgotpassword" element={<ForgotPassword />} />
               <Route path="/features" element={<Features />} />
+              <Route path="/PricingCard" element={<PricingCard />} /> 
             </Routes>
           </main>
           {!isNoNavFooterPath && <Footer />}

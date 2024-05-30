@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 const BookingForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -118,7 +119,9 @@ const BookingForm = () => {
             Book Tickets
           </button>
         </form>
+       
       </div>
+      
     </div>
   );
 };

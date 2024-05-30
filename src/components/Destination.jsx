@@ -7,7 +7,6 @@ import img5 from "../assets/img/saudi.jpg";
 import img6 from "../assets/img/greece.jpg";
 import img7 from "../assets/img/tokyo.jpg";
 
-
 import DestinationCard from "../layouts/DestinationCard"; // Correct import path
 
 const Destination = () => {
@@ -22,44 +21,51 @@ const Destination = () => {
           img={img1}
           title="Paris, France"
           para="Paris offers iconic landmarks like the Eiffel Tower and world-class art at the Louvre Museum."
-          className="hover:shadow-lg transition-shadow duration-300" 
+          className="h-full" // Added class name to ensure full height
         />
         <DestinationCard
           img={img2}
           title="Dubai, UAE"
-          para="A city of superlatives, Dubai boasts towering skyscrapers, luxury shopping, and desert adventures"
+          para="A city of superlatives, Dubai boasts towering skyscrapers and desert adventures."
+          className="h-full" // Added class name to ensure full height
         />
         <DestinationCard
           img={img3}
           title="Venice, Italy"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
         />
-         <DestinationCard
+        <DestinationCard
           img={img4}
           title="Bern, Switzerland"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
         />
-        </div>
-        <div className="flex flex-col lg:flex-row gap-5 mt-14" >
-         <DestinationCard
+      </div>
+      <div className="flex flex-col lg:flex-row gap-5 mt-14">
+        <DestinationCard
           img={img5}
           title="Al ula, Saudi arabia"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
         />
-         <DestinationCard
+        <DestinationCard
           img={img6}
           title="greece, Switzerland"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
-        />
-         <DestinationCard
-          img={img7}
-          title="tokyo, Japan"
-          para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
         />
         <DestinationCard
           img={img7}
           title="tokyo, Japan"
           para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
+        />
+        <DestinationCard
+          img={img7}
+          title="tokyo, Japan"
+          para="Explore the romantic canals and historic architecture of Venice, a city built on water."
+          className="h-full" // Added class name to ensure full height
         />
       </div>
     </div>

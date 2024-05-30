@@ -14,7 +14,7 @@ const Home = () => {
           Discover the Best Destinations
         </h1>
         <p>
-          With TripPixie you can experience new travel and the best tourist
+          With RoamRise you can experience new travel and the best tourist
           destinations that we have to offer
         </p>
 

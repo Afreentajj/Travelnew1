@@ -8,9 +8,9 @@ const Footer = () => {
     <div className="bg-darkBackground text-white">
       <div className="flex flex-col md:flex-row justify-between p-8 md:px-32 px-5">
         <div className=" w-full md:w-1/4">
-          <h1 className=" font-semibold text-xl pb-4">TripPixie</h1>
+          <h1 className=" font-semibold text-xl pb-4">RoamRise</h1>
           <p className=" text-sm">
-          With TripPixie, you can explore new journeys and discover the finest tourist destinations we have to offer
+          With RoamRise, you can explore new journeys and discover the finest tourist destinations we have to offer
           </p>
         </div>
         <div>
@@ -20,21 +20,21 @@ const Footer = () => {
           <nav className=" flex flex-col gap-2">
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+             
             >
               Paris, France
             </a>
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+              
             >
               Dubai, UAE
             </a>
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+              href="/destination"
             >
-              Venice, Italy
+              More..
             </a>
           </nav>
         </div>
@@ -43,19 +43,19 @@ const Footer = () => {
           <nav className=" flex flex-col gap-2">
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+              href="/contact"
             >
               Contact Us
             </a>
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+              
             >
               Testimonial
             </a>
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
-              href="/"
+              
             >
               Rating
             </a>
